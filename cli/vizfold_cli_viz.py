@@ -5,10 +5,6 @@ import os
 import subprocess
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-
-from utils import add_data_args
-
 EXIT_SUCCESS = 0
 EXIT_PARTIAL = 1
 
@@ -228,14 +224,14 @@ if __name__ == "__main__":
         ),
         epilog=(
             "Example (full pipeline):\n"
-            "  python scripts/vizfold_cli_viz.py \\\n"
+            "  python cli/vizfold_cli_viz.py \\\n"
             "      --fasta_file examples/monomer/fasta_dir_6KWC/6KWC.fasta \\\n"
             "      --output_dir outputs/6KWC_viz \\\n"
             "      --base_data_dir /data/alphafold \\\n"
             "      --protein 6KWC \\\n"
             "      --alignment_dir examples/monomer/alignments\n\n"
             "Example (skip inference, visualize existing outputs):\n"
-            "  python scripts/vizfold_cli_viz.py \\\n"
+            "  python cli/vizfold_cli_viz.py \\\n"
             "      --fasta_file examples/monomer/fasta_dir_6KWC/6KWC.fasta \\\n"
             "      --output_dir outputs/6KWC_viz \\\n"
             "      --protein 6KWC \\\n"
@@ -277,9 +273,11 @@ if __name__ == "__main__":
         help="Skip inference and generate visualizations from existing attention maps and PDB.")
 
     exec_group = parser.add_argument_group("Execution")
-    exec_group.add_argument("--log_level", default="INFO",
+    exec_group.add_argument(
+        "--log_level", default="INFO",
         choices=["DEBUG", "INFO", "WARNING", "ERROR"],
-        help="Logging verbosity (default: INFO).")
+        help="Logging verbosity (default: INFO).",
+    )
 
     args = parser.parse_args()
     validate_args(args, parser)

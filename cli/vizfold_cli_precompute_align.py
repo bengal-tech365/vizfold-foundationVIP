@@ -9,7 +9,8 @@ from functools import partial
 from multiprocessing import cpu_count
 from shutil import copyfile
 
-from utils import add_data_args
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from scripts.utils import add_data_args
 
 
 # Exit codes
@@ -313,11 +314,11 @@ if __name__ == "__main__":
         ),
         epilog=(
             "Example (minimal):\n"
-            "  python scripts/vizfold_cli_precompute_align.py \\\n"
+            "  python cli/vizfold_cli_precompute_align.py \\\n"
             "      --input_dir fasta_dir/ --output_dir alignments/ \\\n"
             "      --uniref90_database_path /data/uniref90/uniref90.fasta\n\n"
             "Example (full databases, 4 threads):\n"
-            "  python scripts/vizfold_cli_precompute_align.py \\\n"
+            "  python cli/vizfold_cli_precompute_align.py \\\n"
             "      --input_dir fasta_dir/ --output_dir alignments/ \\\n"
             "      --uniref90_database_path /data/uniref90/uniref90.fasta \\\n"
             "      --mgnify_database_path /data/mgnify/mgy_clusters.fa \\\n"
